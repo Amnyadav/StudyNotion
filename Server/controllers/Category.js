@@ -30,7 +30,7 @@ exports.showAllCategories = async (req, res) => {
   try {
     const allCategories = await Category.find({}).populate("courses").exec();
 
-    console.log("user", req.user);
+    console.log("user in cat", req.user);
     return res.status(200).json({
       success: true,
       message: "fetch all Categories succesfully",
@@ -141,7 +141,7 @@ exports.categoriesPageDetails = async (req, res) => {
     const mostSellingCourses = allCourses
       .sort((a, b) => b.sold - a.sold)
       .slice(0, 10);
-    console.log("mostSellingCourses COURSE", mostSellingCourses);
+    // console.log("mostSellingCourses COURSE", mostSellingCourses);
     return res.status(200).json({
       success: true,
       data: {

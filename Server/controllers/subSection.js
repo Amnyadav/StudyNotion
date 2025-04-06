@@ -5,10 +5,10 @@ require("dotenv").config();
 // const cloudinary = require("cloudinary").v2;
 exports.createSubSection = async (req, res) => {
   try {
-    const { title, timeDuration, description, sectionId } = req.body;
+    const { title, description, sectionId } = req.body;
     console.log( req.files.videoFile);
     const videoFile = req.files.videoFile;
-    if (!title || !timeDuration || !description || !sectionId || !videoFile) {
+    if (!title || !description || !sectionId || !videoFile) {
       return res.status(404).json({
         success: false,
         message: "all fields are required",
@@ -23,7 +23,6 @@ exports.createSubSection = async (req, res) => {
     // create SubSection
     const newSubSection = await SubSection.create({
       title,
-      timeDuration,
       description,
       videoUrl: uploadVideo.secure_url,
     });
@@ -53,11 +52,11 @@ exports.createSubSection = async (req, res) => {
 exports.updateSubSection = async (req, res) => {
   try {
     // fetch data
-    const { title, timeDuration, description, sectionId, subSectionId } =
+    const { title, description, sectionId, subSectionId } =
       req.body;
     // validation
     const videoFile = req.files.videoFile;
-    if (!title || !timeDuration || !description || !sectionId || !videoFile) {
+    if (!title || !description || !sectionId || !videoFile) {
       return res.status(404).json({
         success: false,
         message: "all fields are required",
@@ -70,7 +69,6 @@ exports.updateSubSection = async (req, res) => {
     //update
     const updateSubSection = await SubSection.findByIdAndUpdate({_id:subSectionId}, {
       title,
-      timeDuration,
       description,
       videoUrl: uploadVideo.secure_url,
     },{new:true});

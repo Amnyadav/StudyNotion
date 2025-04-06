@@ -14,7 +14,7 @@ const courseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  whatWillYouLearn: {
+  whatYouWillLearn: {
     type: String,
     trim: true,
     required: true,
@@ -58,6 +58,9 @@ const courseSchema = new mongoose.Schema({
   status:{
     type:String,
     enum:['Draft','Published'],
+  },
+  instructions: {
+    type:[String],
   }
 });
 

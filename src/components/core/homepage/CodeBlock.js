@@ -56,15 +56,17 @@ const CodeBlock = ({
           className={`w-[90%]   ${codeColor} relative flex flex-col font-bold  font-mono`}
         >
           <TypeAnimation
-            sequence={[code,0,""]}
-            cursor={true}
-            repeat={Infinity}
-            speed={20}
-            omitDeletionAnimation={true}
             style={{
               display: "block",
               whiteSpace: "pre-line",
             }}
+            sequence={[code,1000,"",]
+            }
+            cursor={true}
+            repeat={Infinity}
+            // speed={20}
+            omitDeletionAnimation={true}
+            
           ></TypeAnimation>
         </div>
       </div>

@@ -11,7 +11,9 @@ import LearningPage from "../components/core/homepage/LearningPage.js";
 import InstructorSection from "../components/core/homepage/InstructorSection.js";
 import ReviewSlider from "../components/core/homepage/ReviewSlider.js";
 import ExploreMore from "../components/core/homepage/ExploreMore.js";
+import { useTitle } from "../hooks/useTitle.js";
 const Home = () => {
+  useTitle("Home")
   return (
     <div className="">
       {/* section1 */}
@@ -102,16 +104,16 @@ const Home = () => {
               subhead={
                 "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
               }
-              code={`<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                    <title>This is myPage</title>
-                    </head>
-                    <body>
-                    <h1><a href="/">Header</a></h1>
-                    <nav> <a href="/one">One</a> <a href="/two">Two</a> three">Three</a>
-                    </nav>
-                    </body>`}
+              code={`<!DOCTYPE html>/n
+                    <html lang="en">/n
+                    <head>/n/n
+                    <title>This is myPage</title>/n
+                    </head>/n
+                    <body>/n
+                    <h1><a href="/">Header</a></h1>/n
+                    <nav> <a href="/one">One</a> <a href="/two">Two</a> /nthree">Three</a>/n
+                    </nav>/n
+                    </body>/n`}
               codeColor={`text-blue-25`}
               ctaBtn1={{
                 active: true,

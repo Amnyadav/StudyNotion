@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import { FcGoogle } from "react-icons/fc";
 const Template = ({ title, desc1, desc2, image, formtype, setIsLoggedIn }) => {
   return (
-    <div className="w-11/12 max-w-[1160px] mx-auto flex py-12 gap-x-12 space-y-0 justify-between  ">
+    <div className="w-11/12 max-w-[1160px] mx-auto flex  py-12 gap-x-12 space-y-0 lg:justify-between justify-center ">
       {/* left */}
       <div className="w-11/12 max-w-[450px]">
         <h1 className="text-richblack-5 font-semibold text-[1.875rem]  leading[2.375rem] ">
@@ -34,7 +34,7 @@ const Template = ({ title, desc1, desc2, image, formtype, setIsLoggedIn }) => {
         </button>
       </div>
       {/* right */}
-      <div className=" flex flex-col relative w-11/12 max-w-[450px]">
+      <div className="hidden lg:block relative w-11/12 max-w-[450px]">
         <img src={frameImage} width={558} height={504} className=" " loading='lazy'></img>
         <img src={image} width={558} height={490} className="absolute right-4 -top-4 " loading='lazy'></img>
       </div>

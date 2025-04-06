@@ -3,10 +3,12 @@ import { useState } from "react";
 import { MdOutlineVisibility } from "react-icons/md";
 import { MdOutlineVisibilityOff } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { login } from "../../../services/operations/authRelated";
 const LoginForm = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch=useDispatch();
   // const [isVisible,setIsVisible]=useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -20,11 +22,11 @@ const LoginForm = ({ isLoggedIn, setIsLoggedIn }) => {
       };
     });
   }
-  function submitHandler(event) {
+   function submitHandler(event) {
     event.preventDefault();
-    setIsLoggedIn((prev) => !prev);
-    navigate("/dashboard");
-    toast.success("logged in succesfully");
+    const loginFunc=login(formData,navigate);
+    loginFunc(dispatch);
+    
   }
   return (
     <form onSubmit={submitHandler} className="flex flex-col mt-8 w-full">

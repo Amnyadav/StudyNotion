@@ -4,6 +4,7 @@ import loginImg from "../assets/Images/login.webp";
 
 const Login = ({setIsLoggedIn}) => {
   return (
+    
     <div>
       <Template
         title="Welcome Back"

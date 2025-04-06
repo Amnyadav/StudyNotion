@@ -12,10 +12,11 @@ const Catalog = () => {
   const [active, setActive] = useState(1);
   const [categoryId, setCategoryId] = useState("");
   const [catalogPageData, setCatalogPageData] = useState(null);
+  const token=localStorage.getItem("token");
   useEffect(() => {
     const getCategories = async () => {
-      const res = await apiConnector("GET", categories.CATEGORIES_API);
-      console.log(res.data.data);
+      const res = await apiConnector("GET", categories.CATEGORIES_API,{},`Bearer ${token}`);
+      // console.log(res.data.data);
       const categoryId = res?.data?.data.filter(
         (cat) => cat.name.split(" ").join("-").toLowerCase() === catalogName
       )[0]._id;
@@ -28,7 +29,7 @@ const Catalog = () => {
     const getCategoriesData = async () => {
       try {
         const res = await categoryPageData(categoryId);
-        console.log("category data", res.data);
+        // console.log("category data", res.data);
         setCatalogPageData(res?.data);
       } catch (e) {
         console.log("error", e);
@@ -47,7 +48,7 @@ const Catalog = () => {
             <p className="text-richblack-300 text-sm">
               Home / Catalog /
               <span className="text-sm text-yellow-25">
-                {`  ${catalogPageData?.selectedCategory.name}`}
+                {` ${catalogPageData?.selectedCategory.name}`}
               </span>
             </p>
             <p className="text-3xl text-richblack-5">
@@ -162,13 +163,19 @@ const Catalog = () => {
             <p className="text-3xl text-richblack-5">Frequently Bought</p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {catalogPageData?.mostSellingCourses?.map((course, index) => (
-                <Course_Card key={index} course={course} height={'h-[400px]'}></Course_Card>
+                <Course_Card
+                  key={index}
+                  course={course}
+                  height={"h-[400px]"}
+                ></Course_Card>
               ))}
             </div>
           </div>
         </div>
       </div>
+      <div className="py-14">
       <Footer></Footer>
+      </div>
     </div>
   );
 };

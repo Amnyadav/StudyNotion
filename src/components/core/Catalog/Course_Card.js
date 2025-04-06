@@ -8,7 +8,7 @@ const Course_Card = ({ course }) => {
     const count = getAverageRating(course?.ratingAndReviews || []);
     setAvgReviewCount(count);
   }, [course]);
-  console.log("course card");
+  // console.log("course card");
   return (
     <NavLink to={`/courses/${course._id}`}>
       <div className="flex flex-col gap-2">
@@ -18,7 +18,7 @@ const Course_Card = ({ course }) => {
         ></img>
         <p className="text-richblack-5 text-xl">{course.courseName} </p>
         <p className="text-sm text-richblack-50">
-          {course.instructor.firstName}
+          {course.instructor?.firstName}
         </p>
         <div>
           <p>{avgReviewCount || 0}</p>

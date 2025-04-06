@@ -7,8 +7,17 @@ exports.auth = (req, res, next) => {
     // fetch token req body
     // console.log(req.cookies.token)
     // const header=req.headers.cookie.split("token=")[1];
-    const token = req.cookies.token;
-
+    console.log("middleware");
+    // const header = req.headers["authorization"];
+    // console.log(header)
+    // const token = header.split("Bearer ")[1];
+    const token =
+			req.cookies.token ||
+			req.body.token ||
+			req.header("Authorization").replace("Bearer ", "");
+    console.log("inside");
+    // const token=JSON.parse(localStorage.getItem("token"));
+    console.log("token is here from authh middleware", token);
     // console.log("toeken is", req.headers.cookie.split("token=")[1]);
 
     if (!token) {
@@ -21,18 +30,21 @@ exports.auth = (req, res, next) => {
 
     // verify the token
     try {
+      console.log(process.env.JWT_SECRET);
       const payload = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(payload);
+      // console.log(payload);
       req.user = payload;
     } catch (e) {
       console.log(e);
       return res.status(401).json({
         success: false,
         Message: "invalid token....token expired",
+        data:{token:null}
       });
     }
     next();
   } catch (e) {
+    console.log("error in midddleware")
     console.error(e);
     return res.status(500).json({
       success: false,

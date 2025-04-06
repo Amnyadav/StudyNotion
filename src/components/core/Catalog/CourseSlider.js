@@ -9,7 +9,7 @@ import { Autoplay, Navigation, FreeMode, Pagination } from "swiper/modules";
 
 const CourseSlider = ({ courses }) => {
   //   console.log("courses", courses);
-  console.log("inside slider");
+  // console.log("inside slider");
   return (
     <div>
       {courses.length ? (
@@ -33,7 +33,7 @@ const CourseSlider = ({ courses }) => {
         >
           {courses?.map((item, index) => {
             return (
-              <SwiperSlide className="">
+              <SwiperSlide key={index} className="">
                 <Course_Card key={index} course={item}></Course_Card>
               </SwiperSlide>
             );
