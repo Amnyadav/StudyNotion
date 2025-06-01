@@ -21,7 +21,7 @@ app.use(
 app.use(
   // cors()
       cors({
-      origin:'http://localhost:3000',
+      origin:'edtech-one-steel.vercel.app',
       credentials:true
   })
 );
